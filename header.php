@@ -131,9 +131,18 @@
 							<p class="call__number">+ 7 (495) 567-28-15</p>
 						</div>
 					</a>
+
+					<?php 
+					wp_nav_menu(array(
+						'theme_location' => 'menu-header',
+							'menu_id'        => 'nav',
+							'menu_class'     => 'menu__list',
+							'container'      => ''
+					));
+					?>
 					
 					<!-- Main menu -->
-					<nav id="nav-wrap" class="menu">
+					<!-- <nav id="nav-wrap" class="menu">
 						
 						<a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
 						<a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
@@ -155,7 +164,8 @@
 							<li><a href="contacts.html#">Контакты</a></li>
 							<li><a href="market.html">Магазин</a></li>
 						</ul>
-					</nav><!-- End main menu -->
+					</nav> -->
+					<!-- End main menu -->
 					
 					<div class="widget widget_search">
 						<form role="search" method="get" id="searchform" action="#">
