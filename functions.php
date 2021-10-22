@@ -104,6 +104,14 @@ if ( ! function_exists( 'legal_advisory_setup' ) ) :
 endif;
 add_action( 'after_setup_theme', 'legal_advisory_setup' );
 
+
+// Подключение файлов с помощью require 
+require get_template_directory() . '/inc/options-panel-redux.php';
+
+
+
+
+
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
