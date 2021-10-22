@@ -168,12 +168,7 @@
 					<!-- End main menu -->
 					
 					<div class="widget widget_search">
-						<form role="search" method="get" id="searchform" action="#">
-					
-							<input class="text-search" type="search" value="" placeholder="Поиск">
-							<input type="submit" class="submit-search" value="" />
-					
-						</form>
+						<?php echo get_search_form(); ?>
 					</div>
 				</div>
 
