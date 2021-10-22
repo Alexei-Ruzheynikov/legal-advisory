@@ -316,9 +316,7 @@ Redux::set_help_sidebar( $opt_name, $content );
 
 // -> START Basic Fields
 
-Redux::set_section(
-	$opt_name,
-	array(
+Redux::set_section( $opt_name, array(
 		'title'            => esc_html__( 'Global Settings', 'legal-advisory' ),
 		'id'               => 'globalsettings',
 		'desc'             => esc_html__( 'Options fo Header and Footer', 'legal-advisory' ),
@@ -326,7 +324,7 @@ Redux::set_section(
 		'icon'             => 'el el-cogs',
 	)
 );
-Redux::set_section( $opt_name, array(
+Redux::setSection( $opt_name, array(
 		'title'           => esc_html__( 'Social Profiles', 'legal-advisory' ),
 		'id'              => 'social_icons',	
 		'subsection'       => true,
@@ -351,7 +349,330 @@ Redux::set_section( $opt_name, array(
 	)
 );
 
+Redux::set_section( $opt_name, array(
+		'title'           => esc_html__( 'Contact Data', 'legal-advisory' ),
+		'id'              => 'contacts',	
+		'subsection'       => true,
+		'customizer_width' => '450px',
+		'desc'            =>  esc_html__( 'Add Contacts Data for Header and Footer', 'legal-advisory' ),
+		'fields'          => array(
+			array(
+				'title'            => esc_html__( 'Header Data', 'legal-advisory' ),
+				'id'               => 'header-start',
+				'type'             => 'section',
+				'subtitle'         => esc_html__('With the "section" field you can create intented option sections.', 'legal-advisory'),
+				'indent'           => true,					
+			),
 
+			array(
+				'id'       => 'header_phone_label',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Header Phone Label', 'legal-advisory'),
+				'subtitle' => esc_html__('Insert the Label','legal-advisory'),
+				'default'  => 'Заказать звонок',
+			),
+			array(
+				'id'        => 'header_phone',
+				'type'      => 'text',
+				'title'     => esc_html__('Header Phone', 'legal-advisory'),
+				'subtitle'  => esc_html__('Insert the Phone', 'legal-advisory'),
+				'default'   => '',
+			),
+
+			array(
+				'id'      => 'header-end',
+				'type'    => 'section',
+				'indent'  => false,
+			),
+
+			array(
+				'title'            => esc_html__( 'footer Data', 'legal-advisory' ),
+				'id'               => 'footer-start',
+				'type'             => 'section',
+				'indent'           => true,					
+			),
+
+			array(
+				'id'      => 'footer_address',
+				'type'    => 'text',
+				'title'   => esc_html__('Your Address', 'legal-advisory'),
+				'default' => '',
+			),
+			array(
+				'id'     => 'footer_phone',
+				'type'   => 'multi_text',
+				'title'  => esc_html__('Contact Phone', 'legal-advisory'),
+				'subtitle'  => esc_html__('Add your Phones', 'legal-advisory'),
+				'desc'    => esc_html__('Add or remove items', 'legal-advisory'),
+			),
+			array(
+				'id'  => 'footer_email',
+				'type' => 'text',
+				'title' => esc_html__('Email', 'legal-advisory'),
+				'validate'  => 'email',
+				'msg'  => 'Email Format isnot correct',
+				'default' => '',
+			),
+			array(
+				'id'   => 'footer_info',
+				'type' => 'text',
+				'title' => esc_html__('Footer Info', 'legal-advisory'),
+				'subtitle'  => esc_html__('Info after social icons', 'legal-advisory'),
+				'default'  => '',
+			),
+			array(
+				'id' => 'footer_copyrights',
+				'type' => 'editor',
+				'title' => esc_html__('Copyrights', 'legal-advisory'),
+				'default' => '©2007-2018 Все права защищены',
+				'args' => array(
+						'wpautop' => false,
+						'media'  => false,
+						'textarea_rows' => 5,
+						'teeny' => false,
+						'quicktags' => false,
+					)
+				),
+
+			array(
+				'id'      => 'footer-end',
+				'type'    => 'section',
+				'indent'  => false,
+			),
+
+			array(
+				'id'   => 'footer-widget-start',
+				'type' => 'section',
+				'title' => esc_html__('Footer Section Headers', 'legal-advisory'),
+				'indent' => true,
+			),
+
+			array(
+				'id' => 'footer_section1',
+				'type' => 'text',
+				'title' => esc_html__('First Section Title', 'legal-advisory'),
+				'default' => 'Карта сайта',
+			),
+			array(
+				'id' => 'footer_section2',
+				'type' => 'text',
+				'title' => esc_html__('Second Section Title', 'legal-advisory'),
+				'default' => 'Услуги',
+			),
+			array(
+				'id' => 'footer_section3',
+				'type'  => 'text',
+				'title' => esc_html__('Third Section Title', 'legal-advisory'),
+				'default' => 'Контакты',
+			),
+			array(
+				'id' => 'footer_section4',
+				'type' => 'text',
+				'title' => esc_html__('Fourth Section Title', 'legal-advisory'),
+				'default' => 'Подписаться на рассылку новостей',
+			),
+
+			array(
+				'id' => 'footer-widget-end',
+				'type' => 'section',
+				'indent' => false,
+			),
+
+			array(
+				'id'   => 'footer-subscribe-start',
+				'type' => 'section',
+				'title' => esc_html__('Footer Subscribe Form','legal-advisory'),
+				'indent'  => true,
+			),
+
+			array(
+				'id' => 'footer_subscribeshortcode',
+				'type' => 'text',
+				'title' => esc_html__('Shortcode for Subscribe plugin', 'legal-advisory'),
+			),
+
+			array(
+				'id' => 'footer-subscribe-end',
+				'type' => 'section',
+				'indent' => false,
+			),
+
+		)
+	)
+);
+
+Redux::setSection( $opt_name, array(
+		'title'           => esc_html__( 'Home Header', 'legal-advisory' ),
+		'id'              => 'home_header',	
+		'subsection'       => true,
+		'customizer_width' => '450px',
+		'desc'            =>  esc_html__( 'Add Media Files and data for Home Header', 'legal-advisory' ),
+		'fields'          => array(
+			array(
+				'id'      => 'header_bg',
+				'type'    => 'media',
+				'url'     => true,
+				'title'   => esc_html__('Background fo Home Header', 'legal-advisory'),
+				'compiler' => 'true',
+				'desc'  => __('recomended size 1920px-998px', 'legal-advisory'),
+				'default' => array ( 'url' => get_template_directory_uri().'/assets/img/bg.jpg'),
+			),
+			array(
+				'id'    => 'header_time',
+				'type'  => 'text',
+				'title' => esc_html__('Specify the Time', 'legal-advisory'),
+				'default' => '',			
+			),
+			array(
+				'id' => 'header_video',
+				'type' => 'text',
+				'title' => esc_html__('Specify the video Link', 'legal-advisory'),
+				'default' => '',
+				'text_hint' => array(
+					'title' => 'Ссылка с Youtube',
+					'content' => 'Используйте простую ссылку из строки браузера на ролик с Ютуб',
+				)
+				),
+			array(
+				'id'  => 'header_video',
+				'type' => 'text',
+				'title' => esc_html__('Specify the video Link', 'legal-advisory'),
+				'default' => '',
+				'text_hint' => array(
+					'title' => 'Ссылка с Youtube',
+					'content' => 'Используйте простую ссылку из строки браузера на ролик с Ютуб',
+				)
+				),
+			array(
+				'id' => 'header_video_title',
+				'type' => 'text',
+				'title' => esc_html__('Specify the video Title', 'legal-advisory'),
+				'default' => '',
+			),
+			array(
+				'id' => 'home_header_slider',
+				'type' => 'slides',
+				'title' => __('Slides Options', 'legal-advisory'),
+				'subtitle' => __('Unlimited slides with drag and drop sortings.', 'legal-advisory'),
+				'desc' => __('This field will store all slides values into a multidimensional array to use into a foreach loop.', 'legal-advisory'),
+				'placeholder' => array(
+					'title' => __('This is a title', 'legal-advisory'),
+					'description' => __('Description Here', 'legal-advisory'),
+					'url' => __('Give us a link', 'legal-advisory'),
+				),
+			),
+		),
+	)
+);
+
+Redux::set_section( $opt_name, array(
+		'title'           => esc_html__( 'Post types', 'legal-advisory' ),
+		'id'              => 'posttypes',	
+		'customizer_width' => '400px',
+		'desc'            =>  esc_html__( 'Options for Custom Post types', 'legal-advisory' ),
+		'icon'            => 'el el-home',
+) );
+	Redux::setSection( $opt_name, array(
+		'title'           => esc_html__( 'Testimonials', 'legal-advisory' ),
+		'id'              => 'testimonialsposttype',	
+		'subsection'       => true,
+		'customizer_width' => '450px',
+		'desc'            =>  esc_html__( 'Add Media Files and data for Home Header', 'legal-advisory' ),
+		'fields'          => array(
+			array(
+				'id' => 'testylabel1',
+				'type' => 'text',
+				'title' => esc_html__('Specify the Label', 'legal-advisory'),
+				'default' => 'За нас говорят',
+			),
+			array(
+				'id' => 'testylabel2',
+				'type' => 'text',
+				'title' => esc_html__('Specify the Label', 'legal-advisory'),
+				'default' => 'НАШИ КЛИЕНТЫ',
+			),
+			array(
+				'id' => 'testimonial_posts',
+				'type' => 'text',
+				'title' => esc_html__('Specifi the count of testimonials per page', 'legal-advisory'),
+				'default' => '6',
+			),
+			array(
+				'id' => 'testimonial_form_shortcode',
+				'type'  => 'text',
+				'title'  => esc_html__('Form Shortcode', 'legal-advisory'),
+				'desc' => 'Установите плагин и введите шорткод контактной формы в это поле.',
+				'default' => '',
+			),
+		)
+	) );
+	Redux::setSection( $opt_name, array(
+		'title'           => esc_html__( 'Services', 'legal-advisory' ),
+		'id'              => 'servicesposttype',	
+		'subsection'       => true,
+		'customizer_width' => '450px',
+		'desc'            =>  esc_html__( 'Data for Service Page', 'legal-advisory' ),
+		'fields'          => array(
+			array(
+				'id' => 'servicecurrency',
+				'type' => 'text',
+				'title' => esc_html__('Specify the Currency', 'legal-advisory'),
+				'default' => '$',
+			),
+			array(
+				'id' => 'caseslabel',
+				'type' => 'text',
+				'title' => esc_html__('Заголовок для слайдера из Кейсов', 'legal-advisory'),
+				'default' => 'Посмотрите наши последние кейсы',
+			),
+			array(
+				'id' => 'servicearchivetitle1',
+				'type' => 'text',
+				'title' => esc_html__('Заголовок 1 Страницы Архив', 'legal-advisory'),
+				'default' => 'Наши',
+			),
+			array(
+				'id' => 'servicearchivetitle2',
+				'type' => 'text',
+				'title' => esc_html__('Заголовок 2 Страницы Архив','legal-advisory'),
+				'default' => 'УСЛУГИ',
+			),
+			array(
+				'id' => 'servicearchivedesc',
+				'type' => 'text',
+				'title' => esc_html__('Описание Страницы Архив', 'legal-advisory'),
+				'default' => 'Вы хотите реализовать свои бизнес идеи? Начало вашего бизнеса требует прочной юридической основы, и мы поможем вам на каждом этапе',
+			),
+		)
+	) );
+
+	Redux::setSection( $opt_name, array(
+		'title'           => esc_html__( 'News', 'legal-advisory' ),
+		'id'              => 'newsposttype',	
+		'subsection'       => true,
+		'customizer_width' => '450px',
+		'desc'            =>  esc_html__( 'Опции для страницы Новости', 'legal-advisory' ),
+		'fields'          => array(
+			array(
+				'id' => 'newstitle1',
+				'type' => 'text',
+				'title' => 'Заголовок (первая часть)',
+				'default' => 'Актуальные',
+			),
+			array(
+				'id' => 'newstitle2',
+				'type' => 'text',
+				'title' => 'Заголовок (вторая часть)',
+				'default' => 'НОВОСТИ',
+			),
+			array(
+				'id' => 'newspostsperpage',
+				'type' => 'text',
+				'title' => 'Количество новостей на страницах',
+				'default' => '4',
+			),
+		)
+	) );
 
 
 // Redux::set_section(
