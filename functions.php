@@ -51,6 +51,8 @@ if ( ! function_exists( 'legal_advisory_setup' ) ) :
 		register_nav_menus(
 			array(
 				'menu-header' => esc_html__( 'Header Navigation', 'legal-advisory' ),
+				'menu-footer-1' => esc_html__('Footer Navigation 1', 'legal-advisory'),
+				'menu-footer-2' => esc_html__('Footer Navigation 2', 'legal-advisory'),
 			)
 		);
 
