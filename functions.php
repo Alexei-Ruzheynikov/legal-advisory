@@ -222,6 +222,15 @@ if ( ! function_exists( 'legal_advisory_setup' ) ) :
 			)
 		);
 	}
+
+	add_image_size('testimonial-thumb', 225, 231, true);
+	add_image_size('feature-thumb', 438, 455, true);
+	add_image_size('news-thumb', 733, 476, true);
+	add_image_size('testimonial-vertical', 225, 332, true);
+
+
+
+
 endif;
 add_action( 'after_setup_theme', 'legal_advisory_setup' );
 
