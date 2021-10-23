@@ -40,12 +40,24 @@
 
 </head>
 
-<body class="is-home">
+<body <?php body_class(); ?>>
 
 <?php global $legal_advisory; ?>
 
+<?php 
+$class_header = '';
+$style_for_header = '';
+if(is_page_template( 'template-home.php' )){
+	$class_header = 'header-home';
+	$style_for_header = 'style="background: #fff url('. $legal_advisory['header_bg']['url'] .') no-repeat center top/ cover;"';
+} else { 
+	$class_header = 'header-inner';
+	$style_for_header = '';
+}
+?>
+
 		<!-- Header -->
-		<header class="header header-home" style="background: #fff url(img/bg.jpg) no-repeat center top/ cover;">
+		<header class="header <?php echo esc_attr($class_header); ?>" <?php echo $style_for_header; ?>>
 
 			<div class="heading">
 				<ul class="social">
@@ -158,39 +170,34 @@
 
 			<div class="navigation">
 				<div class="logo noise">
-					<p class="logo__icon">JC</p>
-					<p class="logo__desc">legal Advisory Services</p>
+					<p class="logo__icon"><?php bloginfo('name'); ?></p>
+					<p class="logo__desc"><?php bloginfo('description'); ?></p>
 				</div>
 
 				<div class="navigation__wrap">
-					<a href="#call" class="call popup-link-1">
+					<?php if ($legal_advisory['header_phone']){ ?>
+					<a href="tel:<?php echo $legal_advisory['header_phone']; ?>" class="call popup-link-1">
 						<div class="call__icon btn">
 							<svg width="22" height="22">
 								<use xlink:href="#phone-solid"/>
 							</svg>
 						</div>
 						<div class="call__block">
-							<p class="call__text">Заказать звонок</p>
-							<p class="call__number">+ 7 (495) 567-28-15</p>
+							<p class="call__text"><?php echo $legal_advisory['header_phone_label']; ?></p>
+							<p class="call__number"><?php echo $legal_advisory ['header_phone']; ?></p>
 						</div>
 					</a>
+					<?php } ?>
 
-					<?php 
-					wp_nav_menu(array(
-						'theme_location' => 'menu-header',
-							'menu_id'        => 'nav',
-							'menu_class'     => 'menu__list',
-							'container'      => ''
-					));
-					?>
+					
 					
 					<!-- Main menu -->
-					<!-- <nav id="nav-wrap" class="menu">
+					<nav id="nav-wrap" class="menu">
 						
 						<a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
 						<a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
 
-						<ul id="nav" class="menu__list">
+						<!-- <ul id="nav" class="menu__list">
 							<li class="active"><a href="index.html">Главная</a></li>
 							<li><a href="about.html">О компании</a></li>
 							<li><span><a href="services.html">Услуги</a></span>
@@ -206,8 +213,17 @@
 							<li><a href="reviews.html">Отзывы</a></li>
 							<li><a href="contacts.html#">Контакты</a></li>
 							<li><a href="market.html">Магазин</a></li>
-						</ul>
-					</nav> -->
+						</ul> -->
+
+						<?php 
+					wp_nav_menu(array(
+						'theme_location' => 'menu-header',
+							'menu_id'        => 'nav',
+							'menu_class'     => 'menu__list',
+							'container'      => ''
+					));
+					?>
+					</nav>
 					<!-- End main menu -->
 					
 					<div class="widget widget_search">
@@ -216,16 +232,20 @@
 				</div>
 
 			</div>
+			<?php if(is_page_template('template-home.php')){ ?>
 			<div class="offer">
 				<div class="wrapper">
 					<div class="offer__slider">
+						<?php $slider = $legal_advisory['home_header_slider'];
+						foreach($slider as $slide) { ?>
 						<div class="offer__slide">
-							<p class="offer__text">Вы хотите изменить мир.</p>
-							<h1 class="offer__title">Мы хотим вам помочь.</h1>
-							<p class="offer__descr">Мы современная Юридическая фирма,<br> помогающая перспективным стартапам, фрилансерам и малому бизнесу.</p>
-							<a href=contacts.html#callback" class="offer__btn btn popup-link">Бесплатная консультация</a>
+							<p class="offer__text"><?php echo $slide['title']; ?></p>
+							<h1 class="offer__title"><?php echo $slide['description']; ?></h1>
+							<a href=contacts.html#callback" class="offer__btn btn popup-link"><?php esc_html_e('Бесплатная консультация', 'legal_advisory') ?></a>
 						</div>
-						<div class="offer__slide">
+						<?php } ?>
+
+						<!-- <div class="offer__slide">
 							<p class="offer__text">Вы хотите изменить мир.</p>
 							<h1 class="offer__title">Мы хотим вам помочь.</h1>
 							<p class="offer__descr">Юристы JC проведут вас и вашу компанию через многочисленные юридические проблемы, стоящие перед компаниями Москвы сегодня.</p>
@@ -236,15 +256,44 @@
 							<h1 class="offer__title">Мы хотим вам помочь.</h1>
 							<p class="offer__descr">Мы предпочитаем обсуждать проблемы и решения, а не участвовать в теоретических юридических дебатах, которые никогда не заканчиваются.</p>
 							<a href="contacts.html#callback" class="offer__btn btn">Бесплатная консультация</a>
-						</div>
-					</div>
+						</div> -->
 
-					<a class="offer__video popup-with-zoom-anim popup-youtube" href="https://www.youtube.com/watch?v=FWxRRbnwRf0" rel="nofollow" >
-						<p class="offer__time">1:30</p>
+					</div>
+					<?php if($legal_advisory['header_video']){ ?>
+					<a class="offer__video popup-with-zoom-anim popup-youtube" href="<?php echo $legal_advisory['header_time']; ?>" rel="nofollow" >
+					<?php if($legal_advisory['header_time']){ ?>
+						<p class="offer__time"><?php echo $legal_advisory['header_time']; ?></p>
+					<?php } ?>
 						<div class="offer__play"></div>
-						<p class="offer__watch">Посмотрите короткое видео о нашей компании</p>
+						<?php if($legal_advisory['header_video_title']){ ?>
+						<p class="offer__watch"><?php echo $legal_advisory['header_video_title']; ?></p>
+						<?php } ?>
 					</a>
+					<?php } ?>
 				</div>
 			</div>
-			
+			<?php } else { ?>
+				<div class="caption">
+				<div class="wrapper">
+					<h1 class="caption__title">
+						<?php 
+						if(is_single()){
+							$current_post_type = get_post_type(get_the_ID());
+							$post_tupe_object = get_post_type_object($current_post_type);
+							echo $post_type_object->labels->singular_name;
+						} else if(is_tax()){
+							$current_post_type = get_post_type(get_the_ID());
+							$post_tupe_object = get_post_type_object($current_post_type);
+							echo $post_type_object->labels->name;
+						} else {
+							echo wp_title('');
+						}
+						?>
+					</h1>
+					
+					<?php echo legal_advisory_get_breadcrumbs(); ?>
+				</div>
+			</div>				
+			<?php } ?>
+
 		</header><!-- End header -->

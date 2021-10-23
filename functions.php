@@ -227,7 +227,12 @@ add_action( 'after_setup_theme', 'legal_advisory_setup' );
 
 
 // Подключение файлов с помощью require 
+
+//Подключение Redux
 require get_template_directory() . '/inc/options-panel-redux.php';
+
+//Подключение хлебных крошек
+require get_template_directory() . '/inc/breadcrumbs.php';
 
 
 
