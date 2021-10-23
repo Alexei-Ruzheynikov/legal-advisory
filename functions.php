@@ -56,6 +56,125 @@ if ( ! function_exists( 'legal_advisory_setup' ) ) :
 			)
 		);
 
+		//Регистрирую новые пост тайпы
+		function legal_advisory_register_custom_post_type() {
+			register_post_type( 'testimonial', array(
+				'labels' => array(
+				'name'   => 'Отзывы',
+				'singular_name' => 'Отзыв',
+				'add_new'  => 'Добавить новый отзыв'
+				),
+				'public'  => true,
+				'publicly_queryable' => true,
+				'show_ui'   => true,
+				'show_in_menu'  => true,
+				'query_var' => true,
+				'rewrite' => array('slug' => 'testimonials'),
+				'capability_type' => 'post',
+				'has_archive' => true,
+				'hierarchical' => false,
+				'menu_position' => null,
+				'menu_icon' => 'dashicons-admin-customizer',
+				'supports' => array('title', 'editor', 'author', 'thumbnail', 'comments'),
+			));
+
+			register_post_type( 'service', array(
+				'labels' => array(
+				'name'   => 'Услуги',
+				'singular_name' => 'Услуга',
+				'add_new'  => 'Добавить новую'
+				),
+				'public'  => true,
+				'publicly_queryable' => true,
+				'show_ui'   => true,
+				'show_in_menu'  => true,
+				'query_var' => true,
+				'rewrite' => array('slug' => 'services'),
+				'capability_type' => 'post',
+				'has_archive' => true,
+				'hierarchical' => false,
+				'menu_position' => null,
+				'menu_icon' => 'dashicons-dashboard',
+				'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+			));
+
+			register_post_type( 'news', array(
+				'labels' => array(
+				'name'   => 'Новости',
+				'singular_name' => 'Новость',
+				'add_new'  => 'Добавить новую'
+				),
+				'public'  => true,
+				'publicly_queryable' => true,
+				'show_ui'   => true,
+				'show_in_menu'  => true,
+				'query_var' => true,
+				'rewrite' => array('slug' => 'news'),
+				'capability_type' => 'post',
+				'has_archive' => true,
+				'hierarchical' => false,
+				'menu_position' => null,
+				'menu_icon' => 'dashicons-admin-site',
+				'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+			));
+			register_post_type( 'feature', array(
+				'labels' => array(
+				'name'   => 'Кейсы',
+				'singular_name' => 'Кейс',
+				'add_new'  => 'Добавить новый'
+				),
+				'public'  => true,
+				'publicly_queryable' => true,
+				'show_ui'   => true,
+				'show_in_menu'  => true,
+				'query_var' => true,
+				'rewrite' => array('slug' => 'feature'),
+				'capability_type' => 'post',
+				'has_archive' => true,
+				'hierarchical' => false,
+				'menu_position' => null,
+				'menu_icon' => 'dashicons-chart-pie',
+				'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+			));
+
+			//Создание таксономии для услуги
+			register_taxonomy(
+				// указывается название категории и название пост тайпа
+				'service-type',
+				'service',
+				array(
+					'label' => esc_html__('Service type'),
+					'rewrite' => array('slug' => 'service-type'),
+					'hierarhical' => true,
+				) 
+			);
+
+			//Создание таксономии для новостей
+			register_taxonomy(
+				// указывается название категории и название пост тайпа
+				'news-category',
+				'news',
+				array(
+					'label' => 'Категории новостей',
+					'rewrite' => array('slug' => 'news-category'),
+					'hierarhical' => true,
+				) 
+			);
+
+			//Создание таксономии для кейсов
+			register_taxonomy(
+				// указывается название категории и название пост тайпа
+				'feature-type',
+				'feature',
+				array(
+					'label' => 'Case type',
+					'rewrite' => array('slug' => 'case-type'),
+					'hierarhical' => true,
+				) 
+			);
+		}
+		add_action('init', 'legal_advisory_register_custom_post_type');
+
 		/*
 		 * Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
