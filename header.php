@@ -12,7 +12,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="ru">
+<html <?php language_attributes(); ?>>
 
 <head>
 
@@ -28,8 +28,7 @@
 	<link rel="icon" href="img/favicon.png">
 	<link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 
-	<!-- Styles -->
-	<style>body { opacity: 0; overflow-x: hidden; } html { background-color: #fff; }</style>
+
 
 	<?php wp_head(); ?>
 	

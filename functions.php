@@ -235,6 +235,10 @@ endif;
 add_action( 'after_setup_theme', 'legal_advisory_setup' );
 
 
+
+
+
+
 // Подключение файлов с помощью require 
 
 //Подключение Redux
@@ -242,6 +246,13 @@ require get_template_directory() . '/inc/options-panel-redux.php';
 
 //Подключение хлебных крошек
 require get_template_directory() . '/inc/breadcrumbs.php';
+
+//Подключение метабоксов
+require get_template_directory() . '/inc/metaboxes/metaboxes.php';
+require get_template_directory() . '/inc/metaboxes/register_metabox.php';
+
+
+
 
 
 
@@ -334,3 +345,12 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+function legal_advisory_admin_scripts($hook){
+	// Подключение скриптов метабоксов
+	if ($hook == 'post.php' || $hook == 'post-new.php' || $hook == 'page-new.php' || $hook == 'page.php'){
+		wp_enqueue_style( 'wayup-metabox', get_template_directory_uri() . '/assets/css/libs/metabox.css', array(), '1.0');
+		wp_enqueue_script('wayup-metaboxes', get_template_directory_uri() . '/assets/js/libs/metaboxes.js', array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker', 'media-upload', 'thickbox'));
+	}
+}
+add_action('admin_enqueue_scripts', 'legal_advisory_admin_scripts', 10);

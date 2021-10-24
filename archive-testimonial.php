@@ -25,7 +25,7 @@ if ( $testimonials->have_posts() ) :
         <div class="clients__img">
             <?php echo get_the_post_thumbnail(get_the_ID(), 'testimonial-thumb'); ?>
         </div>
-        <?php $fb = get_metadata('post', get_the_ID(), 'legal-advisory_social_link', true); ?>
+        <?php $fb = get_metadata('post', get_the_ID(), 'legal_advisory_social_link', true); ?>
         <?php if($fb){ ?>
         <a href="<?php echo esc_url($fb); ?>" class="clients__link">
             <svg  width="14" height="17">
@@ -41,7 +41,7 @@ if ( $testimonials->have_posts() ) :
         </div>
     </div>
     <?php 
-    $date = get_metadata('post', get_the_ID(), 'legal-advisory_testy_date', true);
+    $date = get_metadata('post', get_the_ID(), 'legal_advisory_testy_date', true);
     ?>
     <?php if($date){ ?>
     <div class="add-time">
