@@ -354,3 +354,32 @@ function legal_advisory_admin_scripts($hook){
 	}
 }
 add_action('admin_enqueue_scripts', 'legal_advisory_admin_scripts', 10);
+
+
+// Создаем класс на боди для специфической страницы (на главной будет is-home, а на других inner-page)
+add_filter('body_class', 'legal_advisory_body_class');
+function legal_advisory_body_class($classes){
+	if(is_page_template('template-home.php')){
+		$classes[] = 'is-home';
+	} else {
+		$classes[] = 'inner-page';
+	}
+	return $classes;
+}
+
+// Отрезок кода отвечающий за вывод количества постов на странице архива с помощью глобальных переменных Redux
+function legal_advisory_posts_per_archivepage($query){
+	global $legal_advisory;
+	$posts_per_page_testy = -1;
+	$posts_per_page_news = -1;
+
+	if($legal_advisory['testimonial_posts']){$posts_per_page_testy = $legal_advisory['testimonial_posts'];} 
+	if($legal_advisory['newspostsperpage']){$posts_per_page_news = $legal_advisory['newspostsperpage'];}
+	if(is_post_type_archive('testimonial')){
+		$query->set('posts_per_page', $posts_per_page_news);
+	}
+	if(is_post_type_archive('news')){
+		$query->set('posts_per_page', $posts_per_page_news);
+	}
+}
+add_action('pre_get_posts','legal_advisory_posts_per_archivepage');

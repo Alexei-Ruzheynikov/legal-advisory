@@ -428,11 +428,9 @@
 
 
 <!-- Javascript -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/goodshare.js@4/goodshare.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/goodshare.js@4/goodshare.min.js"></script> -->
 
-	<script src="js/vendor.min.js"></script>
-	<script src="js/common.min.js"></script>
+
 
 <?php wp_footer(); ?>
 </body>
