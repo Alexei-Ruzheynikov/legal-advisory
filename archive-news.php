@@ -22,7 +22,7 @@ global $legal_advisory;
                 <article class="news__item">
                     <div class="news__wrap">
                         <div class="news__img blue-noise">
-                            <img src="<?php echo get_the_post_thumbnail(get_the_ID(), 'news-thumb'); ?>" alt="Изображение">
+                            <?php echo get_the_post_thumbnail(get_the_ID(), 'news-thumb'); ?>
                             <ul class="tags-list">
                                 <?php $news_categories = wp_get_post_terms(get_the_ID(), 'news-category');
                                 foreach($news_categories as $category){ ?>
