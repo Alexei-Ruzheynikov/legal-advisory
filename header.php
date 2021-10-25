@@ -133,7 +133,7 @@ if(is_page_template( 'template-home.php' )){
 						</a>
 					</li> -->
 				</ul>
-				<div class="heading__block">
+				<!-- <div class="heading__block">
 					<a href="cart.html" class="heading__bag">
 						<svg width="17" height="20">
 							<use xlink:href="#bag"/>
@@ -164,7 +164,7 @@ if(is_page_template( 'template-home.php' )){
 						Личный кабинет
 					</a>
 					<a href="#reg" class="control__reg noise popup-link-2">Регистрация</a>
-				</div>
+				</div> -->
 			</div>
 
 			<div class="navigation">

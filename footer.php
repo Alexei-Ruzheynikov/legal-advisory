@@ -118,7 +118,7 @@
 						<input type="text" name="email" class="subscribe__input" placeholder="Ваш email">
 						<button class="subscribe__btn btn" data-submit>Подписаться</button>
 					</form>
-					<div class="control">
+					<!-- <div class="control">
 						<div class="language">
 							<ul>
 								<li class="lang-item active">
@@ -145,7 +145,7 @@
 							<a href="#reg" class="control__reg noise popup-link-2">Регистрация</a>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<p class="footer__copy">©2007-2018 Все права защищены</p>
 			</div>
 		</footer><!-- End footer -->
