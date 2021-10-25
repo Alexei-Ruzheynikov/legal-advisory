@@ -5003,7 +5003,7 @@ button {
   margin-left: 0;
 }
 
-.event__nav li:first-child:before {
+.event__nav li.prev:before {
   content: "";
   display: block;
   position: absolute;
@@ -5023,7 +5023,7 @@ button {
   padding-right: 10px;
 }
 
-.event__nav li:last-child:after {
+.event__nav li.next:after {
   content: "";
   display: block;
   position: absolute;

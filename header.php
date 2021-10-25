@@ -278,7 +278,7 @@ if(is_page_template( 'template-home.php' )){
 						<?php 
 						if(is_single()){
 							$current_post_type = get_post_type(get_the_ID());
-							$post_tupe_object = get_post_type_object($current_post_type);
+							$post_type_object = get_post_type_object($current_post_type);
 							echo $post_type_object->labels->singular_name;
 						} else if(is_tax()){
 							$current_post_type = get_post_type(get_the_ID());
