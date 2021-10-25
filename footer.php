@@ -10,7 +10,7 @@
  */
 
 ?>
-
+<?php global $legal_advisory; ?>
 	<!-- Footer -->
 		<footer class="footer">
 			<div class="wrapper">
@@ -20,7 +20,49 @@
 						<p class="logo__desc">legal Advisory Services</p>
 					</a>
 					<ul class="social">
-						<li class="social__item">
+						<?php $social_links = $legal_advisory['social_links'];
+					foreach ($social_links as $social=>$link){
+						$label = '';
+						$svg = '';
+						$class = '';
+						
+						if($social == 'Vkontakte Link'){
+							$label = '<span>Vk</span>';
+							$svg = '<svg  width="21" height="18">
+								<use xlink:href="#vk"/>
+							</svg>';
+							$class = 'social__icon_vk';
+						} else if ($social == 'Facebook Link'){
+							$label = '<span>Fb</span>';
+							$svg = '<svg  width="14" height="17">
+								<use xlink:href="#facebook"/>
+							</svg>';
+							$class = 'social__icon_fb';
+						} else if ($social == 'Twitter Link'){
+							$label = '<span>Tw</span>';
+							$svg = '<svg  width="18" height="15">
+								<use xlink:href="#twitter"/>
+							</svg>';
+							$class = 'social__icon_tw';
+						} else if ($social == 'Instagram Link'){
+							$label = '';
+							$svg = '<svg   width="16" height="16">
+								<use xlink:href="#instagram"/>
+							</svg>';
+							$class = 'social__icon_inst';
+						}
+						?>
+						<?php if($link){ ?>
+							<li class="social__item">
+								<?php echo $label; ?>
+								<a class="social__icon <?php echo $class; ?>" target="_blank" href="<?php echo $link; ?>">
+								<?php echo $svg; ?>
+								</a>
+							</li>
+							<?php } ?>
+							<?php } ?>
+
+						<!-- <li class="social__item">
 							<span>Vk</span>
 							<a class="social__icon social__icon_vk" href="#">
 								<svg  width="21" height="18">
@@ -50,7 +92,7 @@
 									<use xlink:href="#instagram"/>
 								</svg>
 							</a>
-						</li>
+						</li> -->
 					</ul>
 					<p class="footer__special">Разработано специально для коучинга WAYUP</p>
 				</div>
