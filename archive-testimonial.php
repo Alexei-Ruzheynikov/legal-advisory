@@ -89,7 +89,9 @@ wp_reset_postdata();
 </nav>
 <?php } ?>   
 
-
+<?php 
+echo do_shortcode($legal_advisory['testimonial_form_shortcode']);
+?>
 
 
 				<!-- <div class="clients__box">
