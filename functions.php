@@ -375,11 +375,25 @@ function legal_advisory_posts_per_archivepage($query){
 
 	if($legal_advisory['testimonial_posts']){$posts_per_page_testy = $legal_advisory['testimonial_posts'];} 
 	if($legal_advisory['newspostsperpage']){$posts_per_page_news = $legal_advisory['newspostsperpage'];}
-	if(is_post_type_archive('testimonial')){
-		$query->set('posts_per_page', $posts_per_page_news);
+	if(!is_admin() && is_post_type_archive('testimonial')){
+		$query->set('posts_per_page', $posts_per_page_testy);
 	}
-	if(is_post_type_archive('news')){
+	if(!is_admin() && is_post_type_archive('news')){
 		$query->set('posts_per_page', $posts_per_page_news);
 	}
 }
+
 add_action('pre_get_posts','legal_advisory_posts_per_archivepage');
+
+// функиия обрезающая на архивных страницах вывод the-content() на 3 точках
+function legal_advisory_custom_excerpt($limit) {
+	$excerpt = explode(' ', get_the_excerpt(), $limit);
+	if(count($excerpt) >= $limit){
+		array_pop($excerpt);
+		$excerpt = implode(" ", $excerpt) . '...';
+	} else {
+		$excerpt = implode(" ", $excerpt);
+	}
+	$excerpt = preg_replace('`\[^\]]*\]`', $excerpt);
+	return $excerpt;
+}
