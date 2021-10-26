@@ -3,12 +3,18 @@
 * Template name: Шаблон Контакты 
 */
 get_header();
+// send contact
+if (isset($_POST['contact'])) {
+	$error = ale_send_contact($_POST['contact']);
+}
 ?>
 
+
+<?php while ( have_posts() ) : the_post(); ?>
 		<section class="inner contacts">
 			<div class="wrapper">
 				<div class="detail">
-					<p class="detail__title">Как нас найти</p>
+					<p class="detail__title"><?php echo get_metadata('post', get_the_ID(), 'legal_advisory_title_left', true); ?></p>
 					<ul class="contact">
 						<li class="contact__item">
 							<div class="contact__icon">
@@ -16,8 +22,7 @@ get_header();
 									<use xlink:href="#pin"/>
 								</svg>
 							</div>
-							<p class="contact__text contact__text_address">г. Москва, ул. Бутырская, 62
-				Z&#8209;Plaza, 5-й этаж</p>
+							<p class="contact__text contact__text_address"><?php echo get_metadata('post', get_the_ID(), 'legal_advisory_contact_address', true); ?></p>
 						</li>
 						<li class="contact__item">
 							<div class="contact__icon">
@@ -26,8 +31,8 @@ get_header();
 								</svg>
 							</div>
 							<div class="contact__phones">
-								<a href="#" class="contact__text contact__text_phone">+ 7 (495) 577-18-11</a>
-								<a href="#" class="contact__text contact__text_phone">+ 7 (495) 567-28-15</a>
+								<a href="tel:<?php echo get_metadata('post', get_the_ID(), 'legal_advisory_contact_phone1',true); ?>" class="contact__text contact__text_phone"><?php echo get_metadata('post', get_the_ID(), 'legal_advisory_contact_phone1',true); ?></a>
+								<a href="tel:<?php echo get_metadata('post', get_the_ID(), 'legal_advisory_contact_phone2',true); ?>" class="contact__text contact__text_phone">tel:<?php echo get_metadata('post', get_the_ID(), 'legal_advisory_contact_phone2',true); ?></a>
 							</div>
 						</li>
 						<li class="contact__item">
@@ -36,19 +41,25 @@ get_header();
 									<use xlink:href="#mail"/>
 								</svg>
 							</div>
-							<p class="contact__text contact__text_mail">JClegal@gmail.com</p>
+							<p class="contact__text contact__text_mail"><?php echo get_metadata('post', get_the_ID(), 'legal_advisory_contact_email', true); ?></p>
 						</li>
 					</ul>
 					<div class="detail__time">
 						<svg width="35" height="35">
 							<use xlink:href="#time"/>
 						</svg>
-						<p>Мы работаем с 9:00 до 22:00 в&nbsp;рабочие дни</p>
+						<p><?php echo get_metadata('post', get_the_ID(), 'legal_advisory_contact_calendar', true); ?></p>
 					</div>
 				</div>
-				<form action="#" class="inner__form log" id="popupOrder">
-					<p class="log__title">Получите бесплатную консультацию уже сегодня</p>
-					<p class="log__subtitle">Оставьте свои контакнтые данные и мы свяжемся с вами в ближайшее время</p>
+				<form method="post" action="<?php the_permalink();?>" class="inner__form log" id="popupOrder">
+					<p class="log__title"><?php echo get_metadata('post',get_the_ID(), 'wayup_contact_title_right',true) ?></p>
+					<div class="log__subtitle"><?php the_content(); ?>
+                    <?php if (isset($_GET['success'])) : ?>
+                            <p class="success"><?php _e('Thank you for your message!', 'wayup')?></p>
+                        <?php endif; ?>
+                        <?php if (isset($error) && isset($error['msg'])) : ?>
+                            <p class="error"><?php echo $error['msg']?></p>
+                        <?php endif; ?>
 					<div class="log__group">
 						<label>Имя</label>
 						<input type="text" name="name" class="log__input">
@@ -75,11 +86,15 @@ get_header();
 							<input id="order" data-submit type="submit" value="Отправить" class="btn"/>
 						</div>
 					</div>
+					<input type="hidden" name="contact[email]" value="no-rew@mail.ru"/>
+                      <?php wp_nonce_field() ?>
 				</form>
 			</div>
 		</section>
 		<section class="map">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2242.467066602709!2d37.581592916069305!3d55.80249139562584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b549fcd3aad429%3A0xae911a34e0878489!2z0JHRg9GC0YvRgNGB0LrQsNGPINGD0LsuLCA2Miwg0JzQvtGB0LrQstCwLCAxMjcwMTU!5e0!3m2!1sru!2sru!4v1534159137914" frameborder="0" style="border:0" allowfullscreen></iframe>
+			<?php echo do_shortcode(get_metadata('post', get_the_ID(), 'legal_advisory_contact_map', true)); ?>
 		</section>
+		<?php 
+    endwhile; 
 
-<?php get_footer(); ?>
+get_footer(); ?>
