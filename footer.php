@@ -165,8 +165,8 @@
 					</ul>
 				</div>
 				<div class="subscribe">
-					<p class="subscribe__title"><?php echo $legal_advisory['footer_section4']; ?></p>
-					<?php echo do_shortcode($legal_advisory['footer_subscribeshortcode']); ?>
+					<!-- <p class="subscribe__title"><?php echo $legal_advisory['footer_section4']; ?></p>
+					<?php echo do_shortcode($legal_advisory['footer_subscribeshortcode']); ?> -->
 					<!-- <div class="control">
 						<div class="language">
 							<ul>
