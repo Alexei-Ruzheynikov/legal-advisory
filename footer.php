@@ -16,8 +16,8 @@
 			<div class="wrapper">
 				<div class="footer__block">
 					<a href="index.html" class="logo noise">
-						<p class="logo__icon">JC</p>
-						<p class="logo__desc">legal Advisory Services</p>
+						<p class="logo__icon"><?php bloginfo('name'); ?></p>
+						<p class="logo__desc"><?php bloginfo('description'); ?></p>
 					</a>
 					<ul class="social">
 						<?php $social_links = $legal_advisory['social_links'];
@@ -94,10 +94,14 @@
 							</a>
 						</li> -->
 					</ul>
-					<p class="footer__special">Разработано специально для коучинга WAYUP</p>
+					<?php if($legal_advisory['footer_info']){ ?>
+					<p class="footer__special"><?php echo $legal_advisory['footer_info']; ?></p>
+					<?php } ?>
 				</div>
 				<nav class="guide">
-					<p class="guide__title">Карта сайта</p>
+					<?php if($legal_advisory['footer_section1']){ ?>
+					<p class="guide__title"><?php echo $legal_advisory['footer_section1']; ?></p>
+					<?php } ?>
 
 					<?php 
 					wp_nav_menu( array(
@@ -117,49 +121,52 @@
 					</ul> -->
 				</nav>
 				<div class="serv">
-					<p class="serv__title">Услуги</p>
-					<ul>
-						<li><a href="service.html">Корпоративная практика, M&A</a></li>
-						<li><a href="service.html">Информационные технологии / TMT</a></li>
-						<li><a href="service.html">Интеллектуальная собственность</a></li>
-						<li><a href="service.html">Government <br>Relations</a></li>
-						<li><a href="service.html">Интернет-бизнес и цифровая экономика</a></li>
-						<li><a href="#">Коммерческая практика</a></li>
-					</ul>
+					<?php if($legal_advisory['footer_section2']){ ?>
+					<p class="serv__title"><?php echo $legal_advisory['footer_section2'] ?></p>
+					<?php } ?>
+					<?php 
+					wp_nav_menu( array(
+						'theme_location' => 'menu-footer-2',
+						'menu_id' => 'footer-navigation-two',
+						'menu_class' => '',
+						'container' => '',
+					));
+					?>
 				</div>
 				<div class="contact">
-					<p class="contact__title">Контакты</p>
+					<?php if($legal_advisory['footer_section3']){ ?>
+					<p class="contact__title"><?php echo $legal_advisory['footer_section3']; ?></p>
+					<?php } ?>
 					<ul class="contact__list">
 						<li class="contact__item">
 							<svg width="20" height="25">
 								<use xlink:href="#pin"/>
 							</svg>
-							<p class="contact__text contact__text_address">г. Москва, ул. Бутырская, 62
-				Z-Plaza, 5-й этаж</p>
+							<p class="contact__text contact__text_address"><?php echo $legal_advisory['footer_address']; ?></p>
 						</li>
 						<li class="contact__item">
 							<svg width="21" height="21">
 								<use xlink:href="#phone"/>
 							</svg>
 							<div class="contact__phones">
-								<a href="#" class="contact__text contact__text_phone">+ 7 (495) 577-18-11</a>
-								<a href="#" class="contact__text contact__text_phone">+ 7 (495) 567-28-15</a>
+								<?php 
+								foreach($legal_advisory['footer_phone'] as $phone){
+									if($phone){ ?>
+								<a href="tel:<?php echo esc_attr($phone); ?>" class="contact__text contact__text_phone"><?php echo esc_attr($phone); ?></a>
+								<?php } } ?>
 							</div>
 						</li>
 						<li class="contact__item">
 							<svg width="25" height="19">
 								<use xlink:href="#mail"/>
 							</svg>
-							<p class="contact__text contact__text_mail">JClegal@gmail.com</p>
+							<p class="contact__text contact__text_mail"><?php echo $legal_advisory['footer_email']; ?></p>
 						</li>
 					</ul>
 				</div>
 				<div class="subscribe">
-					<p class="subscribe__title">Подписаться на рассылку новостей</p>
-					<form action="#" class="subscribe__form" id="popupSubscribe">
-						<input type="text" name="email" class="subscribe__input" placeholder="Ваш email">
-						<button class="subscribe__btn btn" data-submit>Подписаться</button>
-					</form>
+					<p class="subscribe__title"><?php echo $legal_advisory['footer_section4']; ?></p>
+					<?php echo do_shortcode($legal_advisory['footer_subscribeshortcode']); ?>
 					<!-- <div class="control">
 						<div class="language">
 							<ul>
@@ -188,7 +195,7 @@
 						</div>
 					</div>
 				</div> -->
-				<p class="footer__copy">©2007-2018 Все права защищены</p>
+				<p class="footer__copy"><?php echo $legal_advisory['footer_copyrights']; ?></p>
 			</div>
 		</footer><!-- End footer -->
 
