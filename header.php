@@ -55,6 +55,9 @@ if(is_page_template( 'template-home.php' )){
 }
 ?>
 
+<?php $test = get_option('themename_theme_options'); echo $test['text_test'] . ' ';
+$test2 = get_option('themename_theme_options'); echo $test2['color_scheme']; ?>
+
 		<!-- Header -->
 		<header class="header <?php echo esc_attr($class_header); ?>" <?php echo $style_for_header; ?>>
 
@@ -175,7 +178,7 @@ if(is_page_template( 'template-home.php' )){
 
 				<div class="navigation__wrap">
 					<?php if ($legal_advisory['header_phone']){ ?>
-					<a href="tel:<?php echo $legal_advisory['header_phone']; ?>" class="call popup-link-1">
+					<a href="#call" class="call popup-link-1">
 						<div class="call__icon btn">
 							<svg width="22" height="22">
 								<use xlink:href="#phone-solid"/>

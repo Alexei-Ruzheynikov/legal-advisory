@@ -565,6 +565,23 @@ Redux::setSection( $opt_name, array(
 	)
 );
 
+Redux::setSection( $opt_name, array(
+		'title'           => esc_html__( 'Modal Windows', 'legal-advisory' ),
+		'id'              => 'modal_windows',	
+		'subsection'       => true,
+		'customizer_width' => '450px',
+		'desc'            =>  esc_html__( 'Add data', 'legal-advisory' ),
+		'fields'          => array(
+			array(
+				'id' => 'modal_contact_shortcode',
+				'type' => 'text',
+				'title' => esc_html__('Specify the shortcode', 'legal-advisory'),
+				'default' => '',
+			),
+		),
+	)
+);
+
 Redux::set_section( $opt_name, array(
 		'title'           => esc_html__( 'Post types', 'legal-advisory' ),
 		'id'              => 'posttypes',	
