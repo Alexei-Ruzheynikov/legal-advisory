@@ -1,6 +1,7 @@
 # Посадка верстки на WordPress
 
 # legal-advisory
+http://legal-advisory.mainweb-planet.ru/
 
 В проекте сделано:
 
